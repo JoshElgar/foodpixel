@@ -3,4 +3,4 @@ const nextConfig = {
   basePath: "/foodpixels",
 };
 
-export default nextConfig;
+module.exports = nextConfig;
