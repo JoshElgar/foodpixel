@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef, useEffect, useState, useMemo } from "react";
 import foods from "../data/unique_foods.json";
 
@@ -15,6 +16,9 @@ const RandomColorSquaresCanvas: React.FC = () => {
     x: number;
     y: number;
   } | null>(null); // Step 2: Add state for hovered food info
+  const [dimensions, setDimensions] = useState<
+    { width: number; height: number } | undefined
+  >();
 
   // Generate an array of random HSL colors
   const generateRandomHSLColors = (count: number): string[] => {
@@ -49,7 +53,7 @@ const RandomColorSquaresCanvas: React.FC = () => {
       const x = (index % squaresPerRow) * squareSize;
       ctx.fillRect(x, y, squareSize, squareSize);
     });
-  }, [foodsWithRandomColor]);
+  }, [foodsWithRandomColor, dimensions]);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
@@ -59,7 +63,7 @@ const RandomColorSquaresCanvas: React.FC = () => {
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
-    const squareSize = 2; // Size of the square in pixels, should match the size used in the useEffect
+    const squareSize = 1; // Size of the square in pixels, should match the size used in the useEffect
     const squaresPerRow = Math.floor(canvas.width / squareSize);
     const index =
       Math.floor(y / squareSize) * squaresPerRow + Math.floor(x / squareSize);
@@ -75,17 +79,36 @@ const RandomColorSquaresCanvas: React.FC = () => {
       setHoveredFoodInfo(null);
     }
   };
-  // something
+
+  useEffect(() => {
+    // This code runs after the component has mounted, ensuring window is defined
+    const updateDimensions = () => {
+      setDimensions({
+        width: Math.min(window.innerWidth - 50, 700),
+        height: Math.min(300000 / Math.min(window.innerWidth - 50, 700), 550),
+      });
+    };
+
+    updateDimensions(); // Set initial size
+
+    // Optional: If you want to handle resize dynamically uncomment the following lines
+    // window.addEventListener("resize", updateDimensions);
+    // return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
+
   return (
     <>
-      <canvas
-        ref={canvasRef}
-        onMouseMove={handleMouseMove}
-        width={Math.min(window.innerWidth - 50, 700)}
-        height={Math.min(300000 / Math.min(window.innerWidth - 50, 700), 550)}
-        style={{ border: "1px solid black" }}
-      ></canvas>
-      {/* </div> */}
+      {dimensions ? (
+        <canvas
+          ref={canvasRef}
+          onMouseMove={handleMouseMove}
+          width={dimensions.width}
+          height={dimensions.height}
+          style={{ border: "1px solid black" }}
+        ></canvas>
+      ) : (
+        <div>Loading...</div>
+      )}
       {hoveredFoodInfo && (
         <div
           style={{
