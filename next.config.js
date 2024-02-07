@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: "/foodpixels",
+  assetPrefix: "/foodpixels",
 };
 
 module.exports = nextConfig;
