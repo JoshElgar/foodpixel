@@ -3,7 +3,7 @@
 const assetPrefix = process.env.ASSET_PREFIX || "";
 
 const nextConfig = {
-  assetPrefix,
+  // assetPrefix,
 };
 
 module.exports = nextConfig;
