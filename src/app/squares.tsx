@@ -75,6 +75,7 @@ const RandomColorSquaresCanvas: React.FC = () => {
       setHoveredFoodInfo(null);
     }
   };
+  // something
   return (
     <>
       <canvas
