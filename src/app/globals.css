@@ -4,8 +4,8 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  /* --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255; */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,16 +18,43 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.food {
+  position: relative;
+}
+
+.pixel {
+  border-radius: 100%;
+  transition: transform 0.1s;
+  display: inline-block;
+  margin: 0px;
+}
+.pixel:hover {
+  /* border-radius: 0%; */
+  transform: scale(3);
+  border: 1px solid black;
+  z-index: 1;
+}
+
+.popup {
+  visibility: hidden;
+  position: absolute;
+  /* Additional styling */
+}
+
+.food:hover .popup {
+  visibility: visible;
 }
