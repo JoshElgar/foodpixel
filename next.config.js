@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  assetPrefix: "/foodpixels",
+  // assetPrefix: "/foodpixels",
 };
 
 module.exports = nextConfig;
