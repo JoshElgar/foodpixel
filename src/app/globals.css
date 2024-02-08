@@ -58,3 +58,11 @@ body {
 .food:hover .popup {
   visibility: visible;
 }
+
+a {
+  color: #1da1f2; /* Default link color */
+}
+
+a:hover {
+  color: #1a91da; /* Changes color to gold on hover */
+}

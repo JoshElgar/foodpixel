@@ -112,7 +112,7 @@ const RandomColorSquaresCanvas: React.FC = () => {
           style={{ border: "1px solid black" }}
         ></canvas>
       ) : (
-        <div>Loading...</div>
+        <div>Loading... (count to 3)</div>
       )}
       {hoveredFoodInfo && (
         <div
