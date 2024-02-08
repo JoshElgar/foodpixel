@@ -55,6 +55,10 @@ const RandomColorSquaresCanvas: React.FC = () => {
     });
   }, [foodsWithRandomColor, dimensions]);
 
+  const handleMouseOut = () => {
+    setHoveredFoodInfo(null);
+  };
+
   const handleMouseMove = (event: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -102,6 +106,7 @@ const RandomColorSquaresCanvas: React.FC = () => {
         <canvas
           ref={canvasRef}
           onMouseMove={handleMouseMove}
+          onMouseOut={handleMouseOut}
           width={dimensions.width}
           height={dimensions.height}
           style={{ border: "1px solid black" }}
